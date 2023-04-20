@@ -1,16 +1,24 @@
 name: Build and Test ASP.NET Web Application
-on: [push, pull_request]
+'on':
+  - push
+  - pull_request
 jobs:
-  build:
-    runs-on: windows-2019
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup .NET Framework SDK
-        uses: microsoft/setup-msbuild@v1
-        with:
-          dotnet-version: '4.7.2'
-      - name: Restore NuGet packages
-        run: nuget restore
-      - name: Build
-        run: msbuild B1Test/B1Test.csproj /p:Configuration=Release
+ build: 
+  runs-on: windows-2019
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Setup .NET Framework SDK
+      uses: microsoft/setup-msbuild@v1
+     # with:
+     #  dotnet-version: 4.7.2
+    - name: Restore NuGet packages
+      run: nuget restore
+    - name: Build
+      run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+    - name: Generate Artifacts
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: Artifacts
+        path: |
+          ./B1Test/bin/Release/*

@@ -16,7 +16,7 @@ jobs:
       run: nuget restore
     - name: Build
       run: |
-        msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+        msbuild B1Test/B1Test.csproj /p:Configuration=Release
         dotnet publish -r win-x64 --configuration "Release" --self-contained "true" -o ../publish;
     - name: Generate Artifacts
       uses: actions/upload-artifact@v3.1.2

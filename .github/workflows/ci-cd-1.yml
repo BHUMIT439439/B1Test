@@ -20,5 +20,4 @@ jobs:
       uses: actions/upload-artifact@v3.1.2
       with:
         name: Artifacts
-        path: |
-          B1Test/B1Test/bin/*
+        path: B1Test/tree/main/B1Test/bin/*

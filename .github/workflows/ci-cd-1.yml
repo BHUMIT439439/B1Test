@@ -19,7 +19,7 @@ jobs:
         msbuild B1Test/B1Test.csproj /p:Configuration=Release
         
     - name: publish
-      run: msbuild B1Test/B1Test.csproj -t:Publish OutputPath=./publish
+      run: msbuild B1Test/B1Test.csproj -t:Publish
       
     - name: Generate Artifacts
       uses: actions/upload-artifact@v3.1.2

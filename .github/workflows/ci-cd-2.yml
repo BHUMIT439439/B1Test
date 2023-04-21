@@ -28,14 +28,17 @@ jobs:
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     
-   
+    - name: action-zip
+      uses: montudor/action-zip@v1.0.0
+      with:
+        args: unzip -qq /Publish/B1Test.zip/ -d /Publish/B1Test/
         
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Artifacts
         path: |
-          /Publish/*.zip/Content/D_C/a/B1Test/B1Test/B1Test/obj/Release/Package/PackageTmp
+          /Publish/B1Test/
           
        #   B1Test/bin/*.*
        #   B1test/web.config

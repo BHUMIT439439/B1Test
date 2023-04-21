@@ -35,7 +35,7 @@ jobs:
 #         zip ../$package-$GITHUB_RUN_NUMBER.zip *
 
     - name: create zip
-    - uses: montudor/action-zip@v1
+    - uses: montudor/action-zip@v1.0.0
       with:
         args: zip -qq -r Publish.zip Publish
         

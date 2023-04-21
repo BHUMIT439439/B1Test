@@ -19,7 +19,7 @@ jobs:
         msbuild B1Test/B1Test.csproj /p:Configuration=Release
         
     - name: publish
-      run: msbuild /t:Publish /p:Configuration=Release /p:PublishDir=B1Test\publish B1Test\B1Test.csproj
+      run: msbuild /t:Publish /p:Configuration=Release /p:PublishDir=C:\MyApp\publish B1Test\B1Test.csproj
       
     - name: Create artifact
       working-directory: B1Test

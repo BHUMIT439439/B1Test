@@ -28,11 +28,16 @@ jobs:
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     
-    - name: create artifact
-      run: |
-        cd /Publish/
-        package=$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $1}')-$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $2}')
-        zip ../$package-$GITHUB_RUN_NUMBER.zip *
+#     - name: create artifact
+#       run: |
+#         cd /Publish/
+#         package=$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $1}')-$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $2}')
+#         zip ../$package-$GITHUB_RUN_NUMBER.zip *
+
+    - name: create zip
+    - uses: montudor/action-zip@v1
+      with:
+        args: zip -qq -r Publish.zip Publish
         
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2

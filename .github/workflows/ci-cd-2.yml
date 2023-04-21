@@ -1,0 +1,38 @@
+name: Build and Test ASP.NET Web Application
+'on':
+  - push
+  - pull_request
+jobs:
+ build: 
+  runs-on: windows-2019
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Setup .NET Framework SDK
+      uses: microsoft/setup-msbuild@v1
+     # with:
+     #  dotnet-version: 4.7.2
+     
+    - name: Restore NuGet packages
+      run: nuget restore
+      
+    #- name: Build
+    #  run: msbuild /t:Build /p:Configuration=Release (working)
+    #  run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
+    
+    - name: Build and Publish the project
+      run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+    #  run: dotnet publish -c Release -r win-x64 -o ./publish
+    #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
+    #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
+    #  run: dotnet publish -c Release -r win-x64 -o ./publish
+      
+    - name: Generate Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifacts
+        path: |
+          /publish
+       #   B1Test/bin/*.*
+       #   B1test/web.config

@@ -35,7 +35,7 @@ jobs:
       with:
         name: Artifacts
         path: |
-          /Publish/*.zip/Content\D_C\a\B1Test\B1Test\B1Test\obj\Release\Package\PackageTmp
+          /Publish/*.zip/Content/D_C/a/B1Test/B1Test/B1Test/obj/Release/Package/PackageTmp
           
        #   B1Test/bin/*.*
        #   B1test/web.config

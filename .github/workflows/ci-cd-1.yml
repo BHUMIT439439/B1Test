@@ -22,7 +22,7 @@ jobs:
       run: msbuild B1Test/B1Test.csproj -t:Publish
       
     - name: Create artifact
-      working-directory: src
+#       working-directory: src
       run: |
         cd publish
         package=$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $1}')-$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $2}')

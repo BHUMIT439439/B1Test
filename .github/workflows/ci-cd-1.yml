@@ -18,8 +18,11 @@ jobs:
       run: |
         msbuild B1Test/B1Test.csproj /p:Configuration=Release
         
+    - name: repair
+      run: dotnet repair
+      
     - name: publish
-      run: msbuild /t:Publish /p:Configuration=Release /p:PublishDir=C:\MyApp\publish B1Test\B1Test.csproj
+      run: dotnet publish -r win-x64 --configuration "Release" --self-contained "true" -o ../publish
       
     - name: Create artifact
       working-directory: B1Test

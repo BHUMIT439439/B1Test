@@ -4,7 +4,7 @@ name: use linux
   - pull_request
 jobs:
   CI:
-    runs-on: [linux-latest]
+    runs-on: ubuntu-20.04
     timeout-minutes: 30
     defaults:
       run:

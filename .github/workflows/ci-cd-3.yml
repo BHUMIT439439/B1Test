@@ -1,0 +1,37 @@
+name: use linux
+'on':
+  - push
+  - pull_request
+jobs:
+  CI:
+    runs-on: [self-hosted, linux, x64, AWS-EKS-runner-non-prod]
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: B1Test
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v3
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+                   
+    - name: Build and Publish package
+      run: |
+        dotnet restore
+        dotnet publish -r linux-x64 --configuration "Release" --self-contained "true" -o ../publish;
+
+    - name: Create artifact
+      working-directory: B1Test
+      run: |
+        cd publish
+        package=$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $1}')-$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $2}')
+        zip ../$package-$GITHUB_RUN_NUMBER.zip *
+
+#     - uses: actions/upload-artifact@v3
+#       with:
+#         name: artifact
+#         path: |
+#           <path to zip file>/src/*.zip

@@ -1,3 +1,4 @@
+
 name: Build and Test ASP.NET Web Application
 'on':
   - push
@@ -22,24 +23,23 @@ jobs:
     #  run: 'msbuild B1Test/B1Test.csproj /p:Configuration=Release'
     
     - name: Build and Publish the project
-      run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+      run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
-        
+      
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
         name: Artifacts
         path: |
-          /Publish/B1Test/
+          /publish
           
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3
       with:
         name: B1Test-artifact
-        path: /Publish/B1Test/
-          
+        path: /Publish
        #   B1Test/bin/*.*
        #   B1test/web.config

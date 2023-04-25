@@ -27,9 +27,6 @@ jobs:
     #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
     #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
     #  run: dotnet publish -c Release -r win-x64 -o ./publish
-    
-    - name: action-zip
-      run: unzip /Publish/*.zip
         
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
@@ -37,6 +34,12 @@ jobs:
         name: Artifacts
         path: |
           /Publish/B1Test/
+          
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: B1Test-artifact
+        path: /Publish/B1Test/
           
        #   B1Test/bin/*.*
        #   B1test/web.config

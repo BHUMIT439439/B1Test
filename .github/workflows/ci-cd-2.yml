@@ -40,6 +40,9 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: Artifacts
+        
         path: /Publish
-       #   B1Test/bin/*.*
-       #   B1test/web.config
+    - name: Deploy GitHub Pages site
+      uses: actions/deploy-pages@v2.0.1
+      with:
+        artifact_name: Artifacts

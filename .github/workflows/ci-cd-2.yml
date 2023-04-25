@@ -3,6 +3,8 @@ name: Build and Test ASP.NET Web Application
 'on':
   - push
   - pull_request
+permissions:
+  id-token: write
 jobs:
  build: 
   runs-on: windows-2019

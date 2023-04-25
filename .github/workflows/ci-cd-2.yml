@@ -39,7 +39,7 @@ jobs:
     - name: Download a Build Artifact
       uses: actions/download-artifact@v3
       with:
-        name: B1Test-artifact
+        name: Artifacts
         path: /Publish
        #   B1Test/bin/*.*
        #   B1test/web.config

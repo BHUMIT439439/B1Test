@@ -34,7 +34,7 @@ jobs:
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Artifacts
+        name: b1test-Artifacts
         path: |
           /publish
           

@@ -33,4 +33,4 @@ jobs:
       with:
         name: b1test-Artifacts
         path: |
-          /publish
+          /publish/

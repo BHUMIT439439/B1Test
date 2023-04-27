@@ -19,9 +19,8 @@ jobs:
         dotnet-version: 6.0.x
                    
     - name: Build and Publish package
-      working-directory: B1Test
       run: |
-        dotnet build B1Test.sln --configuration Release --no-restore;
+        dotnet build /home/runner/B1Test.sln --configuration Release --no-restore;
 
     - name: Create artifact
       working-directory: B1Test

@@ -20,7 +20,7 @@ jobs:
                    
     - name: Build and Publish package
       run: |
-        msbuild B1Test.sln
+        msbuild B1Test/B1Test.csproj
 
     - name: Create artifact
       working-directory: B1Test

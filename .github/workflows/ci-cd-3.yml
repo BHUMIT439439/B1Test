@@ -24,10 +24,11 @@ jobs:
       run: dotnet restore
 
     - name: Build and Publish the project
-      run: msbuild B1Test.sln /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+      run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
 
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Artifacts
-        path: /Publish/
+        name: b1test-Artifacts
+        path: |
+          /publish

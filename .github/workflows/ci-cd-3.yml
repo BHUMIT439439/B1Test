@@ -24,14 +24,6 @@ jobs:
         
     - name: Restore dependencies
       run: dotnet restore
-      
-    - name: Build project
-      run: msbuild B1Test.sln /p:Configuration=Release
-      
-    #- name: Build
-    #  run: dotnet build --no-restore
-    #- name: Test
-    #  run: dotnet test --no-build --verbosity normal
     
     - name: Build and Publish the project
       run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"

@@ -24,7 +24,7 @@ jobs:
       run: dotnet restore
 
     - name: Build and Publish the project
-      run: msbuild B1Test.sln /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
+      run: dotnet publish -r linux-x64 --configuration "Release" -o ../publish;
 
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2

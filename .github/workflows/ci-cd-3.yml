@@ -1,36 +1,41 @@
-name: use linux
-'on':
-  - push
-  - pull_request
-jobs:
-  CI:
-    runs-on: ${{ fromJSON('["ubuntu-latest", "self-hosted"]')[github.repository == 'github/docs-internal'] }}
-    timeout-minutes: 30
-    defaults:
-      run:
-        working-directory: B1Test
-    steps:
-    - name: Checkout Repo
-      uses: actions/checkout@v3
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
 
+name: .NET
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-                   
-    - name: Build and Publish package
-      run: |
-       msbuild B1Test.sln /p:Configuration=Release
-
-    - name: Create artifact
-      working-directory: B1Test
-      run: |
-        cd publish
-        package=$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $1}')-$(echo "$GITHUB_REF_NAME" | awk -F[/] '{print $2}')
-        zip ../$package-$GITHUB_RUN_NUMBER.zip *
-
-#     - uses: actions/upload-artifact@v3
-#       with:
-#         name: artifact
-#         path: |
-#           <path to zip file>/src/*.zip
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build project
+      run: msbuild B1Test.sln /p:Configuration=Release
+      
+    #- name: Build
+    #  run: dotnet build --no-restore
+    #- name: Test
+    #  run: dotnet test --no-build --verbosity normal
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-artifacts
+        path: |
+          /home/runner/work/B1Test/B1Test/B1Test/bin/Release/

@@ -20,7 +20,7 @@ jobs:
                    
     - name: Build and Publish package
       run: |
-        msbuild -r linux-x64 -o ../publish;
+        msbuild -r linux-x64 -orc ../publish;
 
     - name: Create artifact
       working-directory: B1Test

@@ -26,11 +26,7 @@ jobs:
     
     - name: Build and Publish the project
       run: msbuild B1Test/B1Test.csproj /p:Configuration=Release /p:DeployOnBuild=true /p:WebPublishMethod=MSDeploy /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="/Publish/"
-    #  run: dotnet publish -c Release -r win-x64 -o ./publish
-    #  run: dotnet pack --configuration Release B1Test/B1Test.csproj
-    #  run: xcopy /s /y /r /i "\B1Test\bin" "\publish"
-    #  run: dotnet publish -c Release -r win-x64 -o ./publish
-      
+
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2
       with:

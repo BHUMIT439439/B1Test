@@ -20,7 +20,7 @@ jobs:
                    
     - name: Build and Publish package
       run: |
-        dotnet build -r linux-x64 --configuration "Release" --self-contained "true" -o ../publish;
+        msbuild -r linux-x64 --configuration "Release" --self-contained "true" -o ../publish;
 
     - name: Create artifact
       working-directory: B1Test

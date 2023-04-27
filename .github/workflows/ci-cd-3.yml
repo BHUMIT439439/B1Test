@@ -19,6 +19,7 @@ jobs:
         dotnet-version: 6.0.x
                    
     - name: Build and Publish package
+      working-directory: B1Test
       run: |
         dotnet build B1Test.sln --configuration Release --no-restore;
 

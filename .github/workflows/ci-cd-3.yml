@@ -31,4 +31,4 @@ jobs:
       with:
         name: Artifacts
         path: |
-          /publish
+          /Publish

@@ -20,7 +20,7 @@ jobs:
                    
     - name: Build and Publish package
       run: |
-        dotnet build /home/runner/B1Test.sln --configuration Release --no-restore;
+        dotnet build /home/runner/.dotnet/B1Test.sln --configuration Release --no-restore;
 
     - name: Create artifact
       working-directory: B1Test

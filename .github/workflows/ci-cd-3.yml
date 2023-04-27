@@ -24,7 +24,7 @@ jobs:
       run: dotnet restore
 
     - name: Build and Publish the project
-      run: dotnet publish /home/runner/work/B1Test/B1Test/B1Test.sln 
+      run: dotnet publish B1Test.sln 
 
     - name: Generate Artifacts
       uses: actions/upload-artifact@v2

@@ -37,3 +37,9 @@ jobs:
       with:
         name: b1test-Artifacts
 
+    - name: Commit release to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
+      with:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       BRANCH: publish
+       FOLDER: publish

@@ -1,12 +1,12 @@
 
-name: Build and Test ASP.NET Web Application
+name: On windows - artifacts
 'on':
   - push
   - pull_request
 
 jobs:
  build: 
-  permissions: write-all
+
   runs-on: windows-2019
   steps:
     - name: Checkout code
